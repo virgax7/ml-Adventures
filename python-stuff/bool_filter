@@ -1,0 +1,8 @@
+>>> np.array([[[13,14],[3,4]]]) * np.array([[True,False]])
+array([[[13,  0],
+        [ 3,  0]]])
+>>> x = np.array([[[13,14],[3,4]]])
+>>> y = np.array([[True,False]])
+>>> x * y
+array([[[13,  0],
+        [ 3,  0]]])

@@ -1,0 +1,71 @@
+import numpy as np
+
+x0 = np.array([[1.], [2.], [3.]])
+wx1 = np.array([
+    [.1, .2, .1],
+    [.3, .1, .2],
+    [.2, .3, .1]
+])
+
+s0 = np.array([[4.2], [2.7]])
+ws1 = np.array([
+    [.2, .23],
+    [.31, .13],
+    [.11, .29]
+])
+
+y = np.array([[15], [12], [24]])
+
+
+def grad_1(x0, wx1, s0, ws1, y):
+    pred = wx1.dot(x0) + ws1.dot(s0)
+    error = pred - y
+    dwx1 = 2 * error.dot(x0.T)
+    dws1 = 2 * error.dot(s0.T)
+    return dwx1, dws1
+
+
+pred = wx1.dot(x0) + ws1.dot(s0)
+error = pred - y
+print(error)
+for i in range(10):
+    dxw1, dws1 = grad_1(x0, wx1, s0, ws1, y)
+    wx1 -= 0.1 * dxw1
+    ws1 -= 0.1 * dws1
+
+pred = wx1.dot(x0) + ws1.dot(s0)
+error = pred - y
+print(error)
+
+print("wx1 is : ", wx1)
+print("ws1 is : ", ws1)
+print("-----------------------------------------------------------------------------")
+
+x0 = np.array([[1.], [2.], [3.], [4.2], [2.7]])
+w1 = np.array([
+    [.1, .2, .1, .2, .23],
+    [.3, .1, .2, .31, .13],
+    [.2, .3, .1, .11, .29]
+])
+
+y = np.array([[15], [12], [24]])
+
+def grad_1(x0, w1, y):
+    pred = w1.dot(x0)
+    error = pred - y
+    dwx1 = 2 * error.dot(x0.T)
+    return dwx1
+
+pred = w1.dot(x0)
+error = pred - y
+print(error)
+for i in range(10):
+    dx1 = grad_1(x0, w1, y)
+    w1 -= 0.1 * dx1
+
+pred = w1.dot(x0)
+error = pred - y
+print(error)
+
+print("wx1 is : ", wx1)
+print("ws1 is : ", ws1)

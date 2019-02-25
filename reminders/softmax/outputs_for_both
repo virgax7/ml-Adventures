@@ -1,0 +1,50 @@
+
+numpy 
+
+[[0.25519382]
+ [0.51389725]
+ [0.23090892]]
+[[-0.        ]
+ [-0.        ]
+ [ 1.20945928]]
+------------- now training----------------------------
+notice how the gradient value is the same as softmax_torch.py 
+gradient value for the first gradient descent is 
+  [[ 0.51038765  0.76558147]
+ [ 1.02779451  1.54169176]
+ [-1.53818216 -2.30727324]]
+first pred was 
+  [[ 0.255]
+ [ 0.514]
+ [ 0.231]]
+after 500 gradient descent, pred is now 
+  [[ 0.170]
+ [ 0.245]
+ [ 0.584]]
+the weights are 
+ [[ 0.049  0.123]
+ [ 0.197  0.146]
+ [ 0.354  0.331]]
+ 
+ 
+ 
+ torch
+ 
+ notice how the gradient value is the same as softmax_numpy.py 
+gradient value for the first gradient descent is 
+ tensor([[ 0.5104,  0.7656],
+        [ 1.0278,  1.5417],
+        [-1.5382, -2.3073]], dtype=torch.float64)
+-----------------------
+first pred was 
+  tensor([[0.26],
+        [0.51],
+        [0.23]], dtype=torch.float64, grad_fn=<DivBackward0>)
+after 500 gradient descent, pred is now 
+  tensor([[0.17],
+        [0.25],
+        [0.58]], dtype=torch.float64, grad_fn=<DivBackward0>)
+the weights are 
+ tensor([[0.05, 0.12],
+        [0.20, 0.15],
+        [0.35, 0.33]], dtype=torch.float64, requires_grad=True)

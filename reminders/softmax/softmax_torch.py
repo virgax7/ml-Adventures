@@ -31,11 +31,13 @@ def softmax(z):
 
 def loss_vector(x, w, y):
     return torch.sum(-y * torch.log(softmax(w.mm(x))))
+    # ignore the bottom for now
+    # return torch.sum(-y * torch.log(softmax(w.mm(x))) + (1-y) * ((torch.log(1-softmax(w.mm(x))))))
 
 
 first_pred = softmax(w.mm(x))
 
-cycles = 1
+cycles = 500
 for i in range(cycles):
     l = loss_vector(x, w, y)
     l.backward()
@@ -51,3 +53,6 @@ torch.set_printoptions(precision=2)
 print("first pred was \n ", first_pred)
 print("after 500 gradient descent, pred is now \n ", softmax(w.mm(x)))
 print("the weights are \n", w)
+
+
+

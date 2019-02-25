@@ -34,7 +34,8 @@ print(loss_vector(first_pred, y))
 def softmax_gd(w, x, y):
     # loss is -ylog(pred)
     ewx = np.exp(w.dot(x))
-    da = -y * (ewx * (sum(ewx) - ewx) / sum(ewx) ** 2) / (ewx / sum(ewx)) + ((1 - y) * (ewx * (sum(ewx) - ewx) / sum(ewx) ** 2) / (1 - (ewx / sum(ewx))))
+    # da = -y * (ewx * (sum(ewx) - ewx) / sum(ewx) ** 2) / (ewx / sum(ewx)) + ((1 - y) * (ewx * (sum(ewx) - ewx) / sum(ewx) ** 2) / (1 - (ewx / sum(ewx))))
+    da = (1 - y) * (ewx / sum(ewx))  - y * (1 - (ewx / sum(ewx)))
     dw = (da).dot(x.T)
     return dw
 
@@ -44,7 +45,7 @@ for i in range(cycles):
     z = w.dot(x)
     # print("loss is ", sum(loss_vector(z, y)))
     if (i == 0):
-        print("notice how the gradient value is the same as softmax_torch.py ")
+        print("notice how the gradient value is the same as softmax_numpy.py ")
         print("gradient value for the first gradient descent is \n ",softmax_gd(w, x, y))
     w -= 0.1 * softmax_gd(w, x, y)
 
@@ -52,5 +53,4 @@ np.set_printoptions(formatter={'float': '{: 0.3f}'.format})
 print("first pred was \n ", first_pred)
 print("after 500 gradient descent, pred is now \n ", softmax(w.dot(x)))
 print("the weights are \n", w)
-
 

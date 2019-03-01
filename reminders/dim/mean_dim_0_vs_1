@@ -1,0 +1,10 @@
+>>> y
+tensor([[1., 1., 1., 1., 5.],
+        [1., 1., 1., 1., 5.],
+        [1., 1., 1., 1., 5.]], dtype=torch.float64)
+>>> torch.mean(y)
+tensor(1.8000, dtype=torch.float64)
+>>> torch.mean(y, dim=0)
+tensor([1., 1., 1., 1., 5.], dtype=torch.float64)
+>>> torch.mean(y, dim=1)
+tensor([1.8000, 1.8000, 1.8000], dtype=torch.float64)
